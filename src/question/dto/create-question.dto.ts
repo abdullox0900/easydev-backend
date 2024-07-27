@@ -13,13 +13,17 @@ export class CreateQuestionDto {
   @IsMongoId()
   readonly programmingLanguage: string;
 
+  @IsNotEmpty()
+  @IsString()
+  readonly language: string;
+
   @IsOptional()
-  @IsEnum(['oson', 'orta', 'qiyin'])
+  // @IsEnum(['oson', 'orta', 'qiyin'])
   readonly level?: string;
 
   @IsOptional()
   @IsArray()
-  @IsString({ each: true })
+  // @IsString({ each: true })
   readonly tags?: string[];
 
   @IsOptional()
@@ -28,5 +32,9 @@ export class CreateQuestionDto {
 
   @IsOptional()
   @IsArray()
-  readonly resources?: { title: string; link: string; type: string }[];
+  readonly resources?: { title: string; link: string }[];
+
+  @IsOptional()
+  @IsArray()
+  readonly youtube?: { title: string; link: string }[];
 }

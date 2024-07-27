@@ -13,6 +13,9 @@ export class Question extends Document {
   @Prop({ type: Types.ObjectId, ref: 'ProgrammingLanguage', required: true })
   programmingLanguage: ProgrammingLanguage;
 
+  @Prop({ required: true })
+  language: string;
+
   @Prop({ default: 'orta' })
   level: string;
 
@@ -22,8 +25,11 @@ export class Question extends Document {
   @Prop()
   codeSnippet: string;
 
-  @Prop([{ title: String, link: String, type: String }])
-  resources: { title: string; link: string; type: string }[];
+  @Prop([{ title: String, link: String }])
+  resources: { title: string; link: string; }[];
+
+  @Prop([{ title: String, link: String }])
+  youtube: { title: string; link: string; }[];
 }
 
 export const QuestionSchema = SchemaFactory.createForClass(Question);
